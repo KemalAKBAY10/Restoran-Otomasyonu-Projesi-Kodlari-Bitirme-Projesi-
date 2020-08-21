@@ -1,0 +1,17 @@
+﻿@model ProjectBAdminPanel.Models.MenuCategoryModel
+@{
+    ViewBag.Title = "AddNewMenuCategory";
+}
+
+<h2>Yeni Kategori Ekle</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <label>Kategori İsmi:</label>
+        @Html.TextBoxFor(Model => Model.MenuCategory, new { @class = "form-control" })
+    </div>
+
+    <a class="btn btn-secondary" href="@Url.Action("MenuCategory","Home")"><span class="fas fa-times mr-2"></span>İptal</a>
+    <button type="submit" class="btn btn-success"><span class="fa fa-plus mr-2"></span>Ekle</button>
+}

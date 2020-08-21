@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="LoginUserControl">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginUserControlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoginUserControlResult" type="tns:UserLoginControlModel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UserLoginControlModel">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="LoginOk" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserType" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Surname" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AllMenuCategories">
+        <s:complexType />
+      </s:element>
+      <s:element name="AllMenuCategoriesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AllMenuCategoriesResult" type="tns:ArrayOfMenuCategory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMenuCategory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MenuCategory" nillable="true" type="tns:MenuCategory" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MenuCategory">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductType" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="EditMenuCategory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cat" type="tns:MenuCategory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EditMenuCategoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EditMenuCategoryResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddMenuCategory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="catName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddMenuCategoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddMenuCategoryResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AllProducts">
+        <s:complexType />
+      </s:element>
+      <s:element name="AllProductsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AllProductsResult" type="tns:ArrayOfMenuProduct" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMenuProduct">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MenuProduct" nillable="true" type="tns:MenuProduct" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MenuProduct">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProductTypeId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductTypeName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Price" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddMenuProduct">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="prd" type="tns:MenuProduct" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddMenuProductResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddMenuProductResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="LoginUserControlSoapIn">
+    <wsdl:part name="parameters" element="tns:LoginUserControl" />
+  </wsdl:message>
+  <wsdl:message name="LoginUserControlSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginUserControlResponse" />
+  </wsdl:message>
+  <wsdl:message name="AllMenuCategoriesSoapIn">
+    <wsdl:part name="parameters" element="tns:AllMenuCategories" />
+  </wsdl:message>
+  <wsdl:message name="AllMenuCategoriesSoapOut">
+    <wsdl:part name="parameters" element="tns:AllMenuCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="EditMenuCategorySoapIn">
+    <wsdl:part name="parameters" element="tns:EditMenuCategory" />
+  </wsdl:message>
+  <wsdl:message name="EditMenuCategorySoapOut">
+    <wsdl:part name="parameters" element="tns:EditMenuCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddMenuCategorySoapIn">
+    <wsdl:part name="parameters" element="tns:AddMenuCategory" />
+  </wsdl:message>
+  <wsdl:message name="AddMenuCategorySoapOut">
+    <wsdl:part name="parameters" element="tns:AddMenuCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="AllProductsSoapIn">
+    <wsdl:part name="parameters" element="tns:AllProducts" />
+  </wsdl:message>
+  <wsdl:message name="AllProductsSoapOut">
+    <wsdl:part name="parameters" element="tns:AllProductsResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddMenuProductSoapIn">
+    <wsdl:part name="parameters" element="tns:AddMenuProduct" />
+  </wsdl:message>
+  <wsdl:message name="AddMenuProductSoapOut">
+    <wsdl:part name="parameters" element="tns:AddMenuProductResponse" />
+  </wsdl:message>
+  <wsdl:portType name="MyRestaurantServiceSoap">
+    <wsdl:operation name="LoginUserControl">
+      <wsdl:input message="tns:LoginUserControlSoapIn" />
+      <wsdl:output message="tns:LoginUserControlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AllMenuCategories">
+      <wsdl:input message="tns:AllMenuCategoriesSoapIn" />
+      <wsdl:output message="tns:AllMenuCategoriesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EditMenuCategory">
+      <wsdl:input message="tns:EditMenuCategorySoapIn" />
+      <wsdl:output message="tns:EditMenuCategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddMenuCategory">
+      <wsdl:input message="tns:AddMenuCategorySoapIn" />
+      <wsdl:output message="tns:AddMenuCategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AllProducts">
+      <wsdl:input message="tns:AllProductsSoapIn" />
+      <wsdl:output message="tns:AllProductsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddMenuProduct">
+      <wsdl:input message="tns:AddMenuProductSoapIn" />
+      <wsdl:output message="tns:AddMenuProductSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MyRestaurantServiceSoap" type="tns:MyRestaurantServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="LoginUserControl">
+      <soap:operation soapAction="http://tempuri.org/LoginUserControl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AllMenuCategories">
+      <soap:operation soapAction="http://tempuri.org/AllMenuCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditMenuCategory">
+      <soap:operation soapAction="http://tempuri.org/EditMenuCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddMenuCategory">
+      <soap:operation soapAction="http://tempuri.org/AddMenuCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AllProducts">
+      <soap:operation soapAction="http://tempuri.org/AllProducts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddMenuProduct">
+      <soap:operation soapAction="http://tempuri.org/AddMenuProduct" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MyRestaurantServiceSoap12" type="tns:MyRestaurantServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="LoginUserControl">
+      <soap12:operation soapAction="http://tempuri.org/LoginUserControl" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AllMenuCategories">
+      <soap12:operation soapAction="http://tempuri.org/AllMenuCategories" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditMenuCategory">
+      <soap12:operation soapAction="http://tempuri.org/EditMenuCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddMenuCategory">
+      <soap12:operation soapAction="http://tempuri.org/AddMenuCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AllProducts">
+      <soap12:operation soapAction="http://tempuri.org/AllProducts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddMenuProduct">
+      <soap12:operation soapAction="http://tempuri.org/AddMenuProduct" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MyRestaurantService">
+    <wsdl:port name="MyRestaurantServiceSoap" binding="tns:MyRestaurantServiceSoap">
+      <soap:address location="http://localhost:52484/MyRestaurantService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MyRestaurantServiceSoap12" binding="tns:MyRestaurantServiceSoap12">
+      <soap12:address location="http://localhost:52484/MyRestaurantService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

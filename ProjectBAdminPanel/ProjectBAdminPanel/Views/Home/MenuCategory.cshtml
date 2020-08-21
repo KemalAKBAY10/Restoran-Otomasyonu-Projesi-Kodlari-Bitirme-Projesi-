@@ -1,0 +1,53 @@
+﻿@model ProjectBAdminPanel.Models.MenuCategoryPageModel
+@{
+    ViewBag.Title = "MenuCategory";
+}
+
+<h2>Menü Kategori</h2>
+<div class="row col-md-12 text-center">
+    <h6>@TempData["Result"]</h6>
+</div>
+<!-- DataTables Menu Category -->
+<div class="card mb-3">
+    <div class="card-header row">
+        <div class="col-md-6">
+            <i class="fas fa-table"></i>
+        </div>
+        <div class="col-md-6 text-right">
+            <a href="@Url.Action("AddNewMenuCategory","Home")" class="btn btn-success"><span class="fas fa-plus mr-2"></span>Yeni Kategori</a>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="menuCategoryDataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Kategory İsmi</th>
+                        <th>Düzenle</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Id</th>
+                        <th>Kategory İsmi</th>
+                        <th>Düzenle</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model.Categories)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.MenuCategory</td>
+                            <td class="text-center"><a href="@Url.Action("EditCategory","Home",new {id=item.Id,categoryName=item.MenuCategory})" class="text-warning"><span class="far fa-edit mr-2"></span>Düzenle</a></td>
+
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

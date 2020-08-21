@@ -1,0 +1,58 @@
+﻿@model ProjectBAdminPanel.Models.MenuProductPageModel
+@{
+    ViewBag.Title = "MenuProduct";
+}
+
+<h2>Ürünler</h2>
+
+<!-- DataTables Menu Category -->
+<div class="card mb-3">
+    <div class="card-header row">
+        <div class="col-md-6">
+            <i class="fas fa-table"></i>
+        </div>
+        <div class="col-md-6 text-right">
+            <a href="@Url.Action("AddNewProduct","Home")" class="btn btn-success"><span class="fas fa-plus mr-2"></span>Yeni Ürün</a>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="menuProductDataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Ürün İsmi</th>
+                        <th>Kategori İsmi</th>
+                        <th>Price</th>
+                        <th>Düzenle</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Id</th>
+                        <th>Ürün İsmi</th>
+                        <th>Kategori İsmi</th>
+                        <th>Price</th>
+                        <th>Düzenle</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model.Products)
+                    {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.ProductName</td>
+                        <td>@item.MenuCategoryName</td>
+                        <td>@item.Price</td>
+                        <td class="text-center"><a href="#" class="text-warning"><span class="far fa-edit mr-2"></span>Düzenle</a></td>
+
+                    </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

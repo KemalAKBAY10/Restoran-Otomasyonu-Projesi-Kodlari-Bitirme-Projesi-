@@ -1,0 +1,44 @@
+﻿@model ProjectBAdminPanel.Models.MenuCategoryModel
+@{
+    ViewBag.Title = "EditCategory";
+}
+
+<h2>Kategori Düzenle</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <label>Kategori Id:</label>
+        @Html.TextBoxFor(Model => Model.Id, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <div class="form-group">
+        <label>Kategori İsmi:</label>
+        @Html.TextBoxFor(Model => Model.MenuCategory, new { @class = "form-control" })
+    </div>
+
+    <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#deleteCategoryModal"><span class="fas fa-trash mr-2"></span>Kategoriyi Sil</a>
+    <button type="submit" class="btn btn-success"><span class="fa fa-save mr-2"></span>Kaydet</button>
+}
+
+
+<!-- DeleteCategory Modal-->
+<div class="modal fade" id="deleteCategoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Kategori Siliniyor!</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body row">
+                <div class="col-md-4"><span class="fa fa-trash fa-5x text-danger"></span></div>
+                <div class="col-md-8"><h5>Kategoriyi silmek istediğinizden emin misiniz?</h5> <br /> Kategoriyi sildiğinizde altındaki ürünler de silinecektir.</div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal"><span class="fa fa-times mr-2"></span>Cancel</button>
+                <a class="btn btn-danger" href="#"><span class="fa fa-trash mr-2"></span>Sil</a>
+            </div>
+        </div>
+    </div>
+</div>
